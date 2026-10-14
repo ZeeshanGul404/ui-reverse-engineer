@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Reverse Engineer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>UI<span>RE</span></h2>
+
+        <p class="menu-title">WORKSPACE</p>
+        <a class="active" href="#">Dashboard</a>
+        <a href="#">Projects</a>
+        <a href="#">History</a>
+
+        <div class="sidebar-bottom">
+            <p>UI Reverse Engineer</p>
+            <small>Understand. Analyze. Rebuild.</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Website Analyzer</h1>
+                <p>Understand how websites are designed.</p>
+            </div>
+            <span class="status">● SYSTEM READY</span>
+        </header>
+
+        <section class="analyzer-card">
+            <h2>Analyze a website</h2>
+            <p>Inspect publicly accessible design styles. Private or local network addresses are blocked.</p>
+
+            <form id="analyze-form">
+                <input
+                    type="url"
+                    id="website-url"
+                    placeholder="https://example.com"
+                    aria-label="Public website URL"
+                    required
+                >
+                <button type="submit" id="analyze-button">
+                    Analyze Website →
+                </button>
+            </form>
+
+            <p id="message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <p>Colors detected</p>
+                <h2 id="color-count">--</h2>
+                <small>Website color palette</small>
+            </article>
+
+            <article class="stat-card">
+                <p>Fonts detected</p>
+                <h2 id="font-count">--</h2>
+                <small>Typography styles</small>
+            </article>
+
+            <article class="stat-card">
+                <p>Page links</p>
+                <h2 id="link-count">--</h2>
+                <small>Discovered links</small>
+            </article>
+        </section>
+
+        <section class="results-grid">
+            <article class="panel">
+                <h2>Color palette</h2>
+                <p class="panel-description">Select a swatch to copy its color value.</p>
+                <div id="color-palette" class="color-palette">
+                    <p class="empty-state">Analyze a website to see its colors.</p>
+                </div>
+            </article>
+
+            <article class="panel">
+                <h2>Typography</h2>
+                <p class="panel-description">Declared font stacks and font-size values.</p>
+                <div class="typography-sections">
+                    <section class="typography-group">
+                        <h3>Font families</h3>
+                        <div id="font-list" class="token-list">
+                            <p class="empty-state">Font families will appear here.</p>
+                        </div>
+                    </section>
+                    <section class="typography-group">
+                        <h3>Font sizes</h3>
+                        <div id="font-size-list" class="token-list">
+                            <p class="empty-state">Font sizes will appear here.</p>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </section>
+
+        <section class="results-grid">
+            <article class="panel">
+                <h2>Spacing scale</h2>
+                <p class="panel-description">Margin, padding, and gap values found in analyzed CSS.</p>
+                <div id="spacing-list" class="token-list">
+                    <p class="empty-state">Spacing values will appear here.</p>
+                </div>
+            </article>
+
+            <article class="panel">
+                <h2>Border radii</h2>
+                <p class="panel-description">Declared corner radius values.</p>
+                <div id="radius-list" class="token-list">
+                    <p class="empty-state">Radius values will appear here.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="results-grid">
+            <article class="panel">
+                <h2>Shadows</h2>
+                <p class="panel-description">Box and text shadow declarations.</p>
+                <div id="shadow-list" class="token-list">
+                    <p class="empty-state">Shadow styles will appear here.</p>
+                </div>
+            </article>
+
+            <article class="panel">
+                <h2>Layout patterns</h2>
+                <p class="panel-description">Display, positioning, and alignment declarations.</p>
+                <div id="layout-list" class="token-list">
+                    <p class="empty-state">Layout patterns will appear here.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel structure-panel" aria-labelledby="structure-heading">
+            <div class="structure-header">
+                <div>
+                    <h2 id="structure-heading">Structure Explorer</h2>
+                    <p class="panel-description">Explore the analyzed page's HTML hierarchy. Website markup is displayed as text and is never executed.</p>
+                </div>
+                <label class="structure-filter">
+                    <span>Filter elements</span>
+                    <select id="structure-filter" aria-label="Filter structure elements">
+                        <option value="all">All elements</option>
+                        <option value="headings">Headings</option>
+                        <option value="links">Links</option>
+                        <option value="buttons">Buttons</option>
+                        <option value="images">Images</option>
+                        <option value="forms">Forms and inputs</option>
+                        <option value="semantic">Semantic elements</option>
+                    </select>
+                </label>
+            </div>
+            <p id="structure-status" class="structure-status" role="status" aria-live="polite">Analyze a website to explore its structure.</p>
+            <div class="structure-workspace">
+                <div class="structure-tree-panel">
+                    <h3>DOM tree</h3>
+                    <div id="structure-tree" class="structure-tree">
+                        <p class="empty-state">The analyzed page tree will appear here.</p>
+                    </div>
+                </div>
+                <aside id="element-details" class="element-details" aria-live="polite">
+                    <h3>Element details</h3>
+                    <p class="empty-state">Select an element in the tree to inspect its details.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="panel analysis-note">
+            <h2>Page details</h2>
+            <p id="page-title" class="page-title">Your analyzed page title will appear here.</p>
+            <p id="page-description" class="page-description">The page description will appear here.</p>
+            <p id="page-url" class="page-url"></p>
+        </section>
+
+        <section class="panel analysis-note">
+            <h2>Analysis notes</h2>
+            <p id="analysis-note" class="empty-state">Results include accessible external stylesheets, embedded styles, and inline style attributes. Dynamically generated styles may not be available.</p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
